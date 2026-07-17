@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 import { LAYERS } from '@/layers/layerMeta';
+import { renderAs } from './renderAs';
 
 /**
  * Luật canh "ngôn ngữ publish": chữ trên site là chữ cho NGƯỜI ĐỌC, không phải cho dev.
@@ -53,27 +54,9 @@ function assertClean(text: string, where: string) {
   }
 }
 
-/**
- * Render một route ở MỘT ngôn ngữ cụ thể.
- *
- * KHÔNG dùng được `useSettings.setState({ lang })`: dưới `renderToString`, zustand đọc
- * snapshot qua `getServerState || getInitialState` → luôn trả state lúc TẠO store, nên
- * setState không có tác dụng và mọi route sẽ render theo `detectLang()` của máy đang chạy.
- * Thay vào đó: nạp lại module với `navigator.language` giả — đúng đường mà người đọc thật
- * đi vào site lần đầu.
- */
-async function renderAs(lang: 'vi' | 'en', path: string): Promise<string> {
-  vi.resetModules();
-  vi.stubGlobal('navigator', { language: lang === 'en' ? 'en-US' : 'vi-VN' });
-  // Nạp SAU khi reset để App và store dùng cùng một bản module.
-  const { createElement } = await import('react');
-  const { renderToString } = await import('react-dom/server');
-  const { MemoryRouter } = await import('react-router-dom');
-  const { default: App } = await import('@/App');
-  return renderToString(
-    createElement(MemoryRouter, { initialEntries: [path] }, createElement(App))
-  );
-}
+// `renderAs` nhập từ ./renderAs (xem đầu file): render một route ở MỘT ngôn ngữ cụ thể,
+// bằng cách nạp lại module với `navigator.language` giả — đúng đường mà người đọc thật đi
+// vào site lần đầu. Dùng chung với render.test.tsx để hai file không lệch nhau.
 
 // 8 trang thật + trang chủ. Thêm /64-que CÓ CHỌN QUẺ: thẻ minh triết nằm trong panel từng
 // quẻ, render mặc định có thể không chạm tới.

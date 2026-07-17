@@ -1,10 +1,10 @@
-import { describe, it, expect, afterAll } from 'vitest';
+import { describe, it, expect, afterAll, vi } from 'vitest';
 import { renderToString } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import { createElement } from 'react';
 import App from '@/App';
 import { LAYERS } from '@/layers/layerMeta';
-import { useSettings } from '@/store/useSettings';
+import { renderAs } from './renderAs';
 
 /**
  * Smoke test: render mỗi route bằng SSR để bắt lỗi crash khi render
@@ -46,31 +46,36 @@ describe('render mọi lớp không crash', () => {
 });
 
 // Bản tiếng Anh: mọi route vẫn render không crash khi lang='en'.
+//
+// Dùng renderAs (stub navigator + nạp lại module) chứ KHÔNG dùng useSettings.setState:
+// dưới renderToString, zustand đọc snapshot qua getInitialState() nên setState không có
+// tác dụng — ngôn ngữ render là ngôn ngữ MÁY tự nhận. Bản cũ vì thế chỉ xanh trên máy
+// locale tiếng Anh chạy Node ≥21.2, và đỏ trên CI (Node 20, không có navigator).
 describe('render mọi lớp ở lang=en không crash', () => {
-  afterAll(() => useSettings.setState({ lang: 'vi' }));
+  afterAll(() => vi.unstubAllGlobals());
 
   const paths = ['/', ...LAYERS.map((l) => l.path)];
   for (const path of paths) {
-    it(`route ${path} (en)`, () => {
-      useSettings.setState({ lang: 'en' });
-      const html = renderToString(
-        createElement(MemoryRouter, { initialEntries: [path] }, createElement(App))
-      );
+    it(`route ${path} (en)`, async () => {
+      const html = await renderAs('en', path);
       expect(typeof html).toBe('string');
       expect(html.length).toBeGreaterThan(0);
     });
   }
 
-  it('/goc ở lang=en render nội dung tiếng Anh', () => {
-    useSettings.setState({ lang: 'en' });
-    const html = renderToString(
-      createElement(MemoryRouter, { initialEntries: ['/goc'] }, createElement(App))
-    );
-    expect(html).toContain('The Root of the Changes');
+  it('/goc ở lang=en render nội dung tiếng Anh', async () => {
+    expect(await renderAs('en', '/goc')).toContain('The Root of the Changes');
+  });
+
+  // Chống dương tính giả: nếu renderAs hỏng và trả về trang tiếng Việt, test trên vẫn có
+  // thể xanh nhầm. Neo lại bằng chữ ĐẶC TRƯNG của bản tiếng Việt ở cùng route.
+  it('renderAs thật sự đổi ngôn ngữ (không phải xanh giả)', async () => {
+    expect(await renderAs('vi', '/goc')).toContain('Gốc của Dịch');
+    expect(await renderAs('vi', '/goc')).not.toContain('The Root of the Changes');
   });
 
   // Đợt 4–5: mọi trang đã dịch — khẳng định TIÊU ĐỀ EN đặc trưng render đúng route ở lang=en.
-  it('mọi trang đã dịch hiển thị tiêu đề EN đặc trưng', () => {
+  it('mọi trang đã dịch hiển thị tiêu đề EN đặc trưng', async () => {
     const expectEn: Array<[string, string]> = [
       ['/bat-quai', 'Doubling &amp; the Eight Trigrams'],
       ['/ha-do-lac-thu', 'Hetu · Luoshu → the Eight Trigrams'],
@@ -80,11 +85,7 @@ describe('render mọi lớp ở lang=en không crash', () => {
       ['/phuong-phap', 'Method &amp; Sources'],
     ];
     for (const [path, needle] of expectEn) {
-      useSettings.setState({ lang: 'en' });
-      const html = renderToString(
-        createElement(MemoryRouter, { initialEntries: [path] }, createElement(App))
-      );
-      expect(html, `${path} thiếu tiêu đề EN`).toContain(needle);
+      expect(await renderAs('en', path), `${path} thiếu tiêu đề EN`).toContain(needle);
     }
   });
 });
