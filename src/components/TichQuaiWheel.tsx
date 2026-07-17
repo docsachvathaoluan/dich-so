@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { TICH_QUAI } from '@/data/monthHexagrams';
 import { hexagramByKingWen } from '@/data/hexagrams';
 import { polarToXY } from '@/lib/layout';
@@ -8,7 +8,9 @@ import Gua from './Gua';
 const SIZE = 440;
 const C = SIZE / 2;
 // R nhỏ lại để nhãn chí/phân (đặt ở R + LABEL_GAP) nằm NGOÀI ô node (cao 64px) mà vẫn lọt
-// trong khung SIZE — node là button HTML định vị px nên KHÔNG đổi SIZE để khỏi vỡ căn lề.
+// trong khung SIZE. Node là button HTML định vị px, nên KHÔNG đổi SIZE để khỏi vỡ căn lề:
+// muốn vừa màn hình hẹp thì thu nhỏ cả khối bằng transform (xem `scale` bên dưới), chứ
+// đừng đụng vào SIZE.
 const R = SIZE * 0.335;
 const LABEL_GAP = 42;
 // Nhãn phân (Xuân/Thu) nằm trên trục ngang, trùng ô Mão/Dậu (rộng 58px) → xếp 2 DÒNG cho
@@ -36,8 +38,34 @@ export default function TichQuaiWheel({
   center?: ReactNode;
 }) {
   const en = useLang() === 'en';
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  // Vòng vẽ trong hệ toạ độ cố định SIZE×SIZE. SVG tự co theo viewBox, NHƯNG 12 node là
+  // button HTML định vị bằng px nên không co theo: trên điện thoại chúng nằm nguyên chỗ cũ
+  // và thò ra ngoài màn hình. Thu nhỏ CẢ KHỐI bằng transform thì mọi thứ (nét, chữ, node)
+  // cùng một tỉ lệ, nên căn lề không thể lệch. `transform` không đổi kích thước ô layout,
+  // vì vậy chiều cao khung ngoài phải tự nhân theo `scale`.
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(([e]) =>
+      setScale(Math.min(1, e.contentRect.width / SIZE))
+    );
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className="relative mx-auto" style={{ width: SIZE, height: SIZE, maxWidth: '100%' }}>
+    <div
+      ref={boxRef}
+      className="mx-auto w-full overflow-hidden"
+      style={{ maxWidth: SIZE, height: SIZE * scale }}
+    >
+      <div
+        className="relative origin-top-left"
+        style={{ width: SIZE, height: SIZE, transform: `scale(${scale})` }}
+      >
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="absolute inset-0 h-full w-full">
         <circle cx={C} cy={C} r={R} fill="none" stroke="rgba(255,255,255,0.1)" />
         {[
@@ -105,6 +133,7 @@ export default function TichQuaiWheel({
           <div className="pointer-events-auto w-[200px] max-w-[46%]">{center}</div>
         </div>
       )}
+      </div>
     </div>
   );
 }

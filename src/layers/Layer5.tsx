@@ -84,7 +84,9 @@ export default function Layer5() {
 
           {/* 2 cột: vòng Tích quái (trái) · sơ đồ Trời–Đất thu nhỏ (phải) */}
           <div className="grid items-start gap-6 lg:grid-cols-[440px_1fr]">
-            <div className="mx-auto">
+            {/* min-w-0: ô lưới mặc định không co nhỏ hơn nội dung, nên thiếu nó thì vòng
+                Tích quái vẫn đội khung ra dù bản thân nó đã co được. */}
+            <div className="mx-auto min-w-0 w-full">
               <TichQuaiWheel
                 idx={idx}
                 onSelect={setIdx}

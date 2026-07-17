@@ -237,10 +237,11 @@ function TichQuaiRecap() {
         </button>
       </div>
 
-      {/* Track riêng: vòng 440 cứng (nút HTML định vị px, không co được) ‖ SeasonScene (tự
-          tách quỹ đạo 250 + Trái Đất 400). 2xl mới chia cột — xem SpineFigures. */}
+      {/* Track riêng: vòng Tích quái (vẽ ở 440, tự thu nhỏ cả khối khi hẹp) ‖ SeasonScene
+          (tự tách quỹ đạo 250 + Trái Đất 400). 2xl mới chia cột — xem SpineFigures. */}
       <SpineFigures cols="2xl:grid-cols-[440px_1fr]">
-        <div className="mx-auto">
+        {/* min-w-0: ô lưới mặc định không co nhỏ hơn nội dung → thiếu nó là vòng đội khung ra. */}
+        <div className="mx-auto min-w-0 w-full">
           <TichQuaiWheel
             idx={idx}
             onSelect={setIdx}
