@@ -7,11 +7,11 @@ body:
     attributes:
       value: |
         Cứ nói thoải mái. Một góp ý **rất** hữu ích mà ít ai gửi: **"chỗ này tôi đọc mãi không hiểu."**
-        Trang này sinh ra để gỡ bức tường từ ngữ cổ — nên bạn thấy khó hiểu chỗ nào thì **đó là lỗi của
+        Trang này sinh ra để gỡ bức tường từ ngữ cổ, nên bạn thấy khó hiểu chỗ nào thì **đó là lỗi của
         trang, không phải của bạn**.
 
         *Feel free. One under-reported and very useful kind of feedback: **"I couldn't understand this
-        part."** This site exists to remove the wall of archaic language — if a part is confusing,
+        part."** This site exists to remove the wall of archaic language. If a part is confusing,
         that's the site's failure, not yours.*
 
   - type: textarea
@@ -26,7 +26,7 @@ body:
       value: |
         ---
         **Xin đọc trước khi đề xuất tính năng.** Những thứ sau **nằm ngoài phạm vi** dự án và sẽ được
-        từ chối — đây là quyết định chủ ý, không phải thiếu sót:
+        từ chối. Đây là quyết định chủ ý, không phải thiếu sót:
 
         - ❌ Bói toán, xem vận mệnh, luận giải số phận cá nhân
         - ❌ Phong thuỷ ứng dụng, chọn ngày, xem tuổi

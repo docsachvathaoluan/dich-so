@@ -10,7 +10,7 @@ permissions:
   pages: write
   id-token: write
 
-# Nếu đẩy nhiều commit liên tiếp, để lần deploy đang chạy xong đã rồi mới tới lần sau —
+# Nếu đẩy nhiều commit liên tiếp, để lần deploy đang chạy xong đã rồi mới tới lần sau,
 # tránh hai lần deploy giẫm lên nhau.
 concurrency:
   group: pages
@@ -31,7 +31,7 @@ jobs:
       - name: Cài phụ thuộc
         run: npm ci
 
-      # Không deploy nếu số liệu đã lệch — thà site cũ còn hơn site sai.
+      # Không deploy nếu số liệu đã lệch: thà site cũ còn hơn site sai.
       - name: Chạy bộ kiểm tra
         run: npm test
 

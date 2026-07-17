@@ -8,11 +8,11 @@ body:
       value: |
         **Cảm ơn bạn.** Đây là loại góp ý quý nhất với dự án này.
 
-        Một lưu ý trước khi bạn viết: form này **bắt buộc có ô nguồn**. Không phải để làm khó bạn —
+        Một lưu ý trước khi bạn viết: form này **bắt buộc có ô nguồn**. Không phải để làm khó bạn,
         mà vì trang này có thể là nơi ai đó lần đầu tiếp xúc Kinh Dịch một cách nghiêm túc, nên sửa
         một câu ở đây là **thay đổi điều người lạ sẽ tin**. Nguyên tắc đó áp cho cả chủ dự án.
 
-        *Thanks for this — it's the most valuable kind of feedback here. Note this form **requires a
+        *Thanks for this, it's the most valuable kind of feedback here. Note this form **requires a
         source**: changing a sentence on this site changes what a stranger will believe.*
 
   - type: input
@@ -44,10 +44,10 @@ body:
     attributes:
       label: "Nguồn · Source"
       description: |
-        **Sách nào, tác giả nào, trang bao nhiêu.** Hoặc — nếu là chuyện số học — **cứ đưa phép tính ra đây**,
+        **Sách nào, tác giả nào, trang bao nhiêu.** Hoặc, nếu là chuyện số học, **cứ đưa phép tính ra đây**,
         không cần sách; đó là loại biên lai mạnh nhất trong dự án này.
 
-        *Which book, which author, which page. Or, for arithmetic, just show the calculation — no book needed.*
+        *Which book, which author, which page. Or, for arithmetic, just show the calculation. No book needed.*
       placeholder: |
         VD: Ngô Tất Tố, "Kinh Dịch trọn bộ", quẻ Tuỳ, hào Cửu Tam, tr. 212
         Hoặc: Tổng 9 số Lạc Thư = 1+2+…+9 = 45, không phải 55.
@@ -59,9 +59,9 @@ body:
     attributes:
       label: "Loại · Kind"
       options:
-        - "Sai hẳn — nói ngược với nguồn · Plainly wrong — contradicts the source"
-        - "Là dị bản — sách khác nói khác, nên ghi chú cả hai · A variant — sources differ, both should be noted"
-        - "Nêu diễn giải như định lý — thiếu ghi chú trung thực · States interpretation as theorem — missing honesty note"
+        - "Sai hẳn, nói ngược với nguồn · Plainly wrong, contradicts the source"
+        - "Là dị bản: sách khác nói khác, nên ghi chú cả hai · A variant: sources differ, both should be noted"
+        - "Nêu diễn giải như định lý, thiếu ghi chú trung thực · States interpretation as theorem, missing honesty note"
         - "Số học không kiểm được · Arithmetic that doesn't check out"
         - "Bản tiếng Anh dịch sai · The English translation is wrong"
     validations:
@@ -70,7 +70,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        > 💡 Nếu các sách **mâu thuẫn nhau**, đó **không phải lỗi cần sửa** mà là **dị bản cần ghi chú** —
+        > 💡 Nếu các sách **mâu thuẫn nhau**, đó **không phải lỗi cần sửa** mà là **dị bản cần ghi chú**:
         > kết quả đúng sẽ là ghi rõ có nhiều cách hiểu và ai nói gì. Cứ gửi, đó chính là làm đúng.
         >
-        > *If sources contradict each other, that's not a bug — it's a variant to annotate. Send it anyway.*
+        > *If sources contradict each other, that's not a bug. It's a variant to annotate. Send it anyway.*

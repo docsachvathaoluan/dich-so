@@ -6,10 +6,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        Cảm ơn bạn đã báo. Nếu được, kèm **ảnh chụp màn hình** — với trang nhiều sơ đồ như thế này,
+        Cảm ơn bạn đã báo. Nếu được, kèm **ảnh chụp màn hình**: với trang nhiều sơ đồ như thế này,
         một tấm ảnh thường nói rõ hơn cả đoạn văn.
 
-        *Thanks. A screenshot helps a lot — this site is mostly diagrams.*
+        *Thanks. A screenshot helps a lot, since this site is mostly diagrams.*
 
   - type: textarea
     id: chuyen-gi
