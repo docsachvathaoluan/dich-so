@@ -1,0 +1,55 @@
+{
+  "name": "dich-so",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Kinh Dịch qua lăng kính nhị phân & số học hiện đại — giảng giải, không bói toán · I Ching through binary and modern number theory — explanation, not divination",
+  "license": "MIT",
+  "author": "Đọc sách và thảo luận (docsachvathaoluan)",
+  "homepage": "https://docsachvathaoluan.github.io/dich-so/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/docsachvathaoluan/dich-so.git"
+  },
+  "bugs": {
+    "url": "https://github.com/docsachvathaoluan/dich-so/issues"
+  },
+  "keywords": [
+    "kinh-dich",
+    "i-ching",
+    "yijing",
+    "book-of-changes",
+    "hexagram",
+    "bagua",
+    "binary",
+    "chinese-philosophy",
+    "vietnamese",
+    "visualization"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "framer-motion": "^11.11.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  }
+}

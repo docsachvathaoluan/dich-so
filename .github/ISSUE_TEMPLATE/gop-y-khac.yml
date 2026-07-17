@@ -1,0 +1,39 @@
+name: "💬 Góp ý khác · Other feedback"
+description: "Câu hỏi, đề xuất, chỗ khó hiểu, hoặc chuyện muốn bàn · A question, an idea, something confusing, or a discussion"
+title: "[Góp ý] "
+labels: ["góp ý"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cứ nói thoải mái. Một góp ý **rất** hữu ích mà ít ai gửi: **"chỗ này tôi đọc mãi không hiểu."**
+        Trang này sinh ra để gỡ bức tường từ ngữ cổ — nên bạn thấy khó hiểu chỗ nào thì **đó là lỗi của
+        trang, không phải của bạn**.
+
+        *Feel free. One under-reported and very useful kind of feedback: **"I couldn't understand this
+        part."** This site exists to remove the wall of archaic language — if a part is confusing,
+        that's the site's failure, not yours.*
+
+  - type: textarea
+    id: noi-dung
+    attributes:
+      label: "Bạn muốn nói gì? · What's on your mind?"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Xin đọc trước khi đề xuất tính năng.** Những thứ sau **nằm ngoài phạm vi** dự án và sẽ được
+        từ chối — đây là quyết định chủ ý, không phải thiếu sót:
+
+        - ❌ Bói toán, xem vận mệnh, luận giải số phận cá nhân
+        - ❌ Phong thuỷ ứng dụng, chọn ngày, xem tuổi
+        - ❌ Đổi giọng văn thành huyền bí
+
+        Trang này bàn **quy luật vận hành**, không phán đoán tương lai ai cả. Chi tiết ở
+        [CONTRIBUTING.md](https://github.com/docsachvathaoluan/dich-so/blob/main/CONTRIBUTING.md).
+
+        *Out of scope: fortune-telling, fate reading, applied feng shui, or a mystical voice. This site
+        is about how things move, not about predicting anyone's future.*

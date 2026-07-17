@@ -1,0 +1,54 @@
+name: "🐛 Lỗi kỹ thuật · Technical bug"
+description: "Trang vỡ, sơ đồ hiển thị sai, bấm không được, chữ tràn… · Something is broken, mis-rendered, or unclickable"
+title: "[Lỗi] "
+labels: ["lỗi"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã báo. Nếu được, kèm **ảnh chụp màn hình** — với trang nhiều sơ đồ như thế này,
+        một tấm ảnh thường nói rõ hơn cả đoạn văn.
+
+        *Thanks. A screenshot helps a lot — this site is mostly diagrams.*
+
+  - type: textarea
+    id: chuyen-gi
+    attributes:
+      label: "Chuyện gì xảy ra? · What happened?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: cach-lam-lai
+    attributes:
+      label: "Làm sao thấy lại lỗi? · How do I reproduce it?"
+      placeholder: |
+        1. Mở trang …
+        2. Bấm vào …
+        3. Thấy …
+    validations:
+      required: true
+
+  - type: input
+    id: trang
+    attributes:
+      label: "Trang nào? · Which page?"
+      placeholder: "VD: /64-que, hoặc dán link"
+    validations:
+      required: true
+
+  - type: input
+    id: thiet-bi
+    attributes:
+      label: "Máy & trình duyệt · Device & browser"
+      placeholder: "VD: iPhone 13, Safari · Windows 11, Chrome"
+    validations:
+      required: false
+
+  - type: textarea
+    id: anh
+    attributes:
+      label: "Ảnh chụp màn hình · Screenshot"
+      description: "Kéo thả ảnh vào ô này · Drag an image in here"
+    validations:
+      required: false

@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build info
+node_modules/.tmp
+
+# Giữ trên máy, không đưa lên GitHub — tài liệu nghiên cứu nội bộ, ghi chú cho
+# trợ lý AI, và launcher local. Trang /phuong-phap trong app mới là nơi trình bày
+# phương pháp & nguồn cho người đọc.
+docs/
+CLAUDE.md
+.claude/
+kinh dich.bat

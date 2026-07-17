@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #05060d;
+  color: #ece8dd;
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  body {
+    @apply bg-cosmos-950 text-ink font-sans;
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+    text-wrap: balance;
+  }
+  /* Tiêu đề lớn: nét nặng, siết chữ cho có khí lực. */
+  h1 {
+    @apply tracking-tightest;
+  }
+  h2 {
+    letter-spacing: -0.02em;
+  }
+  /* Số/nhị phân canh đều cột (tabular) cho gọn mắt. */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Cuộn mượt tới mỏ neo (tôn trọng người tắt chuyển động). */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Chữ Hán */
+  .han {
+    font-family: 'Noto Serif SC', 'Noto Serif', serif;
+  }
+
+  /* Bảng/panel kính mờ vũ trụ — glass thật: viền trong 1px + bóng nhuốm nền. */
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-cosmos-800/70 backdrop-blur-md shadow-panel;
+    box-shadow:
+      0 10px 44px -16px rgba(3, 6, 16, 0.85),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Panel nổi hơn (lớp trên cùng của thang độ sâu: nền → panel → raised). */
+  .panel-raised {
+    @apply rounded-2xl border border-white/10 bg-cosmos-800/80 backdrop-blur-md shadow-panel-raised;
+  }
+
+  .panel-soft {
+    @apply rounded-xl border border-white/5 bg-white/[0.03];
+  }
+
+  /* Hào sáng / điểm nhấn: glow nhuốm sắc Dương (vàng) hay Âm (ngọc). */
+  .glow-gold {
+    filter: drop-shadow(0 0 6px rgba(232, 195, 115, 0.55));
+  }
+  .glow-jade {
+    filter: drop-shadow(0 0 6px rgba(95, 184, 154, 0.5));
+  }
+  /* Minh triết Lão–Trang: ánh mực-bạc nhạt (thủy mặc). */
+  .glow-silk {
+    filter: drop-shadow(0 0 6px rgba(185, 194, 214, 0.45));
+  }
+
+  /* Nhãn chip */
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-ink-muted;
+  }
+
+  /* Gạch chân nét mực cho tiêu đề */
+  .ink-underline {
+    position: relative;
+  }
+  .ink-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #e8c373, #5fb89a, transparent);
+    opacity: 0.7;
+    border-radius: 9999px;
+  }
+
+  /* Nút công tắc nhỏ */
+  .switch-btn {
+    @apply rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-ink-muted transition hover:border-gold/40 hover:text-ink;
+  }
+  .switch-btn[data-active='true'] {
+    @apply border-gold/50 bg-gold/10 text-gold-soft;
+  }
+}
+
+/* Thanh cuộn mảnh */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 195, 115, 0.3);
+}
+
+/* Tôn trọng người tắt chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

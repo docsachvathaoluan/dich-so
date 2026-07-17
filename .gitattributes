@@ -1,0 +1,7 @@
+# Chuẩn hoá ký tự xuống dòng: kho LUÔN lưu LF, mỗi máy checkout theo kiểu của mình.
+# Không có dòng này, người đóng góp trên macOS/Linux sẽ thấy mọi file hiện lên như bị
+# sửa toàn bộ (vì Windows lưu CRLF) → không ai đọc nổi Pull Request.
+* text=auto
+
+# Ảnh SVG là văn bản — để git diff được.
+*.svg text

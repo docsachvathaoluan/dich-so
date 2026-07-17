@@ -1,0 +1,30 @@
+name: CI
+
+# Chạy trên mọi Pull Request và mọi lần đẩy lên main. Bộ kiểm tra canh các ràng buộc
+# số liệu (64 quẻ phủ đủ mã 0–63, bảng thuật ngữ 8 + 64…), nên đây là lưới an toàn
+# cho nội dung, không chỉ cho code.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Kiểm tra & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Cài phụ thuộc
+        run: npm ci
+
+      - name: Chạy bộ kiểm tra
+        run: npm test
+
+      - name: Kiểm kiểu & build
+        run: npm run build
